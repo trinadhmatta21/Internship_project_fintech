@@ -1,0 +1,384 @@
+/* userauth/static/css/userside.css */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif; 
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* Inherit color for links */
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+}
+
+.UpcomingIPO {
+    text-align: left;
+    margin-left: 36px;
+    margin-top: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.statement {
+    margin-left: 36px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #666;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo img {
+    width: 180px;
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar nav ul li {
+    display: inline;
+}
+
+.navbar nav ul li a {
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar nav ul li a:hover {
+    color: #007bff;
+}
+
+.auth {
+    display: flex;
+    gap: 1rem;
+}
+
+.auth a {
+    color: #333;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth a.signIn {
+    color: #333;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.auth a.signup {
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.auth a.signup:hover {
+    background-color: #0056b3;
+}
+
+/* Container for IPO Boxes */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 10px;
+}
+
+/* IPO Box Styling */
+.ipo-box {
+    background-color: #fff;
+    width: 25%;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ipo-box:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* IPO Title */
+.ipo-title {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: rgba(65, 75, 234, 1);
+}
+
+.ipo-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* IPO Details */
+.ipo-details {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.ipo-details strong {
+    color: #333;
+}
+
+/* IPO Buttons */
+.ipo-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.ipo-buttons a {
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+    text-align: center;
+    flex: 1;
+}
+
+.rhp-button {
+    background-color: rgba(65, 75, 234, 0.1);
+    color: rgba(65, 75, 234, 1);
+    border: 1px solid rgba(65, 75, 234, 1);
+}
+
+.drhp-button {
+    background-color: #f95a5a;
+    color: #fff;
+    border: none;
+}
+
+.rhp-button:hover {
+    background-color: rgba(65, 75, 234, 0.2);
+}
+
+.drhp-button:hover {
+    background-color: #d94f4f;
+}
+
+/* FAQ Container */
+.faq-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.faq-container h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.faq-intro {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* FAQ Items */
+.faq {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.faq-header {
+    padding: 20px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-header:hover {
+    background-color: #f0f0f0;
+}
+
+.faq-content {
+    padding: 15px 25px;
+    font-size: 16px;
+    color: #555;
+    display: none;
+    border-top: 1px solid #f0f0f0;
+}
+
+.faq.active .faq-content {
+    display: block;
+}
+
+.faq-toggle {
+    font-size: 20px;
+    color: #666;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #f4f4f4; /* Light grey background */
+    padding: 40px 80px; /* Padding for space on left and right */
+    border-top: 1px solid #d3d3d3; /* Light grey border on top */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-section {
+    width: 23%;
+    margin-bottom: 20px;
+}
+
+.footer-section h4 {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.footer-section a {
+    display: block;
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #000;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: rgba(0, 120, 255, 1);
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #007bff;
+}
+
+.footer-logo {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-logo img {
+    width: 150px;
+    height: auto;
+}
+
+.footer-note {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #666;
+}
+
+.footer-note a {
+    color: rgba(0, 120, 255, 1);
+    text-decoration: underline;
+}
+
+.footer-disclaimer {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin-top: 30px;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+}
+
+.footer-bottom span {
+    color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .ipo-box {
+        width: 45%;
+    }
+    .footer-section {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar nav ul li {
+        margin-bottom: 10px;
+    }
+
+    .ipo-box {
+        width: 100%;
+    }
+
+    .footer-section {
+        width: 100%;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluestock Fintech Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/manage.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+          <div class="logo-circle">BF</div>
+          <a href="#" class="logo-text">Bluestock Fintech</a>
+        </div>
+        <div class="menu-section">
+          <h3>MENU</h3>
+          <ul>
+
+            <li class="active">
+                <a href="#">
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard' %}">
+                    <i class="fa-solid fa-chart-simple"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manage_ipo' %}">
+                    <i class="fa-solid fa-cart-shopping"></i> Manage IPO
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-file-signature"></i> IPO Subscription
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-list-alt"></i> IPO Allotment
+                </a>
+            </li>
+          </ul>
+        </div>
+        <div class="others-section">
+          <h3>OTHERS</h3>
+          <ul>
+          <li>
+            <a href="#">
+                <i class="fas fa-cog"></i> Settings
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-server"></i> API Manager
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-user-circle"></i> Accounts
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-question-circle"></i> Help
+            </a>
+        </li>
+    </ul>
+
+        </div>
+      </div>
+      <main class="main-content">
+        <header class="topbar">
+            <div class="search-container">
+                <input type="text" placeholder="Search" class="search-input">
+                <button class="search-button">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+          <div class="user-info">
+            <span class="username">Hi, {{name}}</span>
+            <a href="user.html" class="user-avatar">{{ name|slice:":1" }}</a>
+            <div class="notification-icon">
+                <i class="fa-regular fa-bell"></i>
+            </div>
+          </div>
+        </header
+      </main>
+      <div class="manage-ipo">
+        <!-- <h2>Upcoming IPO | Dashboard</h2>
+        <button id="registerIPOBtn" class="btn-register-ipo">Register IPO</button> -->
+        <div class="header-container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Upcoming IPO | Dashboard</h2>
+            {% if user.is_superuser %}
+            <a href="{% url 'register_ipo' %}" class="btn-register-ipo">Register IPO</a>
+            {% endif %}
+        </div>
+        
+        <div class="table-container">
+            <table class="ipo-table">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Price Band</th>
+                        <th>Open Date</th>
+                        <th>Close Date</th>
+                        <th>Issue Size</th>
+                        <th>Issue Type</th>
+                        <th>Listing Date</th>
+                        <th>status</th>
+                        
+                        {% if user.is_superuser %}
+                        <th>Actions</th>
+                    {% endif %}                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ipo in ipos %}
+                    <tr>
+                        <td>{{ ipo.company_name }}</td>
+                        <td>{{ ipo.price_band }}</td>
+                        <td>{{ ipo.open_date }}</td>
+                        <td>{{ ipo.close_date }}</td>
+                        <td>{{ ipo.issue_size }}</td>
+                        <td>{{ ipo.issue_type }}</td>
+                        <td>{{ ipo.listing_date }}</td>
+                        
+                        <td><span class="status ongoing">{{ ipo.status }}</span></td>
+                        {% if user.is_superuser %}
+                        <td>                            <a href="{% url 'edit_ipo' ipo.id %}" class="update-btn">Update</a> 
+                        </td>
+                       
+                        <td>
+                            <a href="{% url 'delete_ipo' ipo.id %}">Delete</a>
+                        </td>
+                    {% endif %}
+                       
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="{% if user.is_superuser %}17{% else %}15{% endif %}">No IPOs registered yet.</td>
+                    </tr>
+                {% endfor %}
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <!-- Pagination -->
+        <div class="pagination">
+            <span class="page-links">
+                {% if ipos.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ ipos.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ ipos.number }} of {{ ipos.paginator.num_pages }}.
+                </span>
+        
+                {% if ipos.has_next %}
+                    <a href="?page={{ ipos.next_page_number }}">next</a>
+                    <a href="?page={{ ipos.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        
+    </body>
+</html>

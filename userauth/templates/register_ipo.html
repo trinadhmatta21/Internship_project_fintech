@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluestock Fintech Dashboard</title>
+    {% load static %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+          <div class="logo-circle">BF</div>
+          <a href="#" class="logo-text">Bluestock Fintech</a>
+        </div>
+        <div class="menu-section">
+          <h3>MENU</h3>
+          <ul>
+
+            <li class="active">
+                <a href="#">
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'dashboard' %}">
+                    <i class="fa-solid fa-chart-simple"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manage_ipo' %}">
+                    <i class="fa-solid fa-cart-shopping"></i> Manage IPO
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-file-signature"></i> IPO Subscription
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-list-alt"></i> IPO Allotment
+                </a>
+            </li>
+          </ul>
+        </div>
+        <div class="others-section">
+          <h3>OTHERS</h3>
+          <ul>
+          <li>
+            <a href="#">
+                <i class="fas fa-cog"></i> Settings
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-server"></i> API Manager
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-user-circle"></i> Accounts
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-question-circle"></i> Help
+            </a>
+        </li>
+    </ul>
+
+        </div>
+      </div>
+      <main class="main-content">
+        <header class="topbar">
+            <div class="search-container">
+                <input type="text" placeholder="Search" class="search-input">
+                <button class="search-button">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+          <div class="user-info">
+            <span class="username">Hi, {{name}}</span>
+            <a href="#" class="user-avatar">{{ name|slice:":1" }}</a>
+            <div class="notification-icon">
+                <i class="fa-regular fa-bell"></i>
+            </div>
+          </div>
+        </header>
+
+       
+        <body>
+            <div class="container">
+              <div class="sidebar">
+                <h2>Upcoming IPO Information</h2>
+                <nav>
+                  <ul>
+                    <li><a href="#" class="active">IPO Information</a></li>
+                    <li><a href="#">IPO Info</a></li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="main-content">
+                <header class="header">
+                  <h3>IPO Information</h3>
+                  <div class="buttons">
+                    
+                    <button class="btn cancel-btn">Cancel</button>
+                  </div>
+                </header>
+                <form class="ipo-form" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  
+                  <!-- Display Form Errors -->
+                  {% if form.errors %}
+                      <div class="form-errors">
+                          <ul>
+                              {% for field in form %}
+                                  {% for error in field.errors %}
+                                      <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                                  {% endfor %}
+                              {% endfor %}
+                              {% for error in form.non_field_errors %}
+                                  <li>{{ error }}</li>
+                              {% endfor %}
+                          </ul>
+                      </div>
+                  {% endif %}
+                  <div class="form-section">
+                    <div class="company-logo">
+                      <div class="NCSlogo">
+                      <div class="logo-actions">
+                        <h4>{{ form.company_logo }}</h4>
+                        <button class="btn upload-btn">Upload Logo</button>
+                        <button class="btn delete-btn">Delete</button>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Company Name</label>
+                      {{ form.company_name }}
+                    </div><br>
+                    <div class="form-group">
+                      <label>Price Band</label>
+                      {{ form.price_band }}
+                    </div><br>
+                    <div class="form-group">
+                      <label>Open</label>
+                      {{ form.open_date }}
+                    </div><br>
+                    <div class="form-group">
+                      <label>Close</label>
+                      {{ form.close_date }}
+                    </div><br>
+                    <div class="form-group">
+                      <label>Issue Size</label>
+                      {{ form.issue_size }}
+                    </div>
+                    <div class="form-group">
+                      <label>Issue Type</label>
+                      {{ form.issue_type }}
+                    </div>
+                    <div class="form-group">
+                      <label>Listing Date</label>
+                      {{ form.listing_date }}
+                    </div>
+                    <div class="form-group">
+                      <label>Status</label>
+                      {{ form.status }}
+                    </div>
+                  </div>
+                  <div class="form-section new-listing">
+                    <h4>New Listed IPO Details (When IPO Gets Listed)</h4>
+                    <div class="form-group">
+                      <label>IPO Price</label>
+                      {{ form.ipo_price }}                    </div>
+                    <div class="form-group">
+                      <label>Listing Price</label>
+                      {{ form.listing_price }}
+                    </div>
+                    <div class="form-group">
+                      <label>Listing Gain</label>
+                      {{ form.listing_gain }}
+                    </div>
+                    <div class="form-group">
+                      <label>Listing Date</label>
+                      <input type="text" placeholder="22-04-03">
+                    </div>
+                    <div class="form-group">
+                      <label>Current Return</label>
+                      {{ form.current_return }}
+                    </div>
+                    <div class="form-group">
+                      <label>Current market price</label>
+                      {{ form.current_market_price }}
+                    </div>
+                    <div class="form-group">
+                      <label>RHP</label>
+                      pdf upload option
+                      {{ form.rhp_pdf }}
+                    </div>
+                    <div class="form-group">
+                      <label>DRHP</label>
+                      pdf upload option
+                      {{ form.drhp_pdf }}
+                    </div>
+                  </div>
+                  <button class="btn register-btn" type="submit">Register</button>
+                </form>
+              </div>
+            </div>
+          </body>
+          </html>

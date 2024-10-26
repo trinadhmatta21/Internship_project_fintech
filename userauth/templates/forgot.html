@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgot Password</title>
+  {% load static %}
+
+  <link rel="stylesheet" href="{% static 'css/forgot.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <!-- Wrap logo image in an anchor tag -->
+      <a href="/Home/Home.html">
+        <img src="{% static 'images/sigininlogo.png' %}" alt="Bluestock Logo" class="logo-image">
+    </a>
+    </div>
+
+    <h2>Forgot Password?</h2>
+    <p>Enter your email address to get the password reset link.</p>
+
+    <form action="/password-reset" method="POST">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="hello@bluestock.in" required>
+      </div>
+
+      <button type="submit" class="btn">Password Reset</button>
+    </form>
+
+    <a href="/signin/sigin.html" class="back-link">Back to login</a>
+  </div>
+
+  <div class="recaptcha">
+    <!-- Insert reCAPTCHA code here if needed -->
+  </div>
+</body>
+</html>

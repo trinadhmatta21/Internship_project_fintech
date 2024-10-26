@@ -1,0 +1,39 @@
+<!-- userauth/templates/otp_verification.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>OTP Verification - Bluestock</title>
+</head>
+<body>
+    <header>
+        <!-- Include your header/navigation here -->
+    </header>
+    
+    <main>
+        <h2>OTP Verification</h2>
+        
+        <!-- Display Messages -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        <form method="post" class="otp-verification-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Verify OTP</button>
+        </form>
+        
+        <p>Didn't receive an OTP? <a href="{% url 'resend_otp' %}">Resend OTP</a></p>
+    </main>
+    
+    <footer>
+        <!-- Include your footer here -->
+    </footer>
+</body>
+</html>

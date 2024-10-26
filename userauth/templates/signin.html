@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Bluestock Fintech</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+</head>
+<body>
+    <div class="login-form">
+        <!-- Bluestock Logo -->
+        <a href="/Home/Home.html" class="logo-link">
+            <img src="{% static 'images/sigininlogo.png' %}" alt="Bluestock Logo" class="logo-image">
+        </a>
+
+        <!-- Sign In Form -->
+        <form method="POST" action="{% url 'signin' %}">
+            {% csrf_token %}
+            <label for="email">Email Address</label>
+            <input type="email" name="email" placeholder="johndoe@gmail.com" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="............" required>
+
+            <!-- Submit Button -->
+            <button type="submit">Sign in</button>
+
+            <!-- Google Login Option -->
+            <div class="alternate-login">
+                <button type="button" class="google-login">Continue with Google</button>
+            </div>
+
+            <!-- Links for Forgot Password and Sign Up -->
+            <p>
+                <a href="{% url 'forgot' %}">Forgot Password?</a>| 
+                <a href="{% url 'signup' %}">Create an account</a>
+            </p>
+        </form>
+
+        <!-- Display any error messages -->
+        {% if error_message %}
+        <p>{{ error_message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

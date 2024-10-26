@@ -1,0 +1,18 @@
+<!-- userauth/templates/edit_ipo.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Edit IPO</title>
+</head>
+<body>
+    <h1>Edit IPO: {{ ipo.company_name }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update IPO</button>
+    </form>
+    <a href="{% url 'manage_ipo' %}">Back to Manage IPO</a>
+</body>
+</html>

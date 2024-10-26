@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Bluestock Fintech</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}"></head>
+<body>
+    <div class="login-form">
+        <a href="/Home/Home.html" class="logo-link">
+            <img src="{% static 'images/sigininlogo.png' %}" alt="Bluestock Logo" class="logo-image">
+        </a>
+        <h3>Create an account</h3>
+     
+        <form method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <label for="name">Name</label>
+        <input type="text" name="name" placeholder="Saisha Wagh" required>  <!-- Form Field for Name -->
+
+        <label for="email">Email Address</label>
+        <input type="email" name="email" placeholder="hello@bluestoke.in" required>  <!-- Form Field for Email -->
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="..........." required> 
+            
+            <!-- CAPTCHA checkbox -->
+            <div class="captcha">
+                <input type="checkbox" id="robot-check">
+                <label for="robot-check">I'm not a robot</label>
+            </div>
+
+            <div class="remember-me">
+                <input type="checkbox" id="remember">
+                <label for="remember">Keep me signed in</label>
+            </div>
+            
+            <button type="submit">Sign up</button>
+            <div class="alternate-login">
+                <button type="button" class="google-login">Continue with Google</button>
+            </div>
+            <p>Already have an account? <a href="{% url 'signin' %}">Sign In</a></p>
+        </form>
+        {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+    </div>
+</body>
+</html>

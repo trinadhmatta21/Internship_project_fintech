@@ -1,0 +1,185 @@
+<!-- userauth/templates/userside.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming IPO - Bluestock</title>
+    {% load static %}
+
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/userside.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="{% static 'images/desktopView.png' %}" alt="Bluestock Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">IPO</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Brokers</a></li>
+                    <li><a href="#">Live News</a></li>
+                </ul>
+            </nav>
+            <div class="auth">
+                <a href="#" class="signIn">Sign In</a>
+                <a href="#" class="signup">Sign Up Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h2 class="UpcomingIPO">Upcoming IPO</h2>
+        <p class="statement">Companies that have filled for an IPO with SEBI. Few details might be disclosed by the Companies later.</p>
+        
+        <div class="container">
+            {% for ipo in ipos %}
+            <div class="ipo-box">
+                <!-- IPO Title with Logo -->
+                <div class="ipo-title">
+                    <img src="{{ ipo.company_logo.url }}" alt="{{ ipo.company_name }}" class="ipo-icon">
+                    {{ ipo.company_name }}
+                </div>
+                
+                <!-- IPO Details -->
+                <div class="ipo-details">
+                    <strong>Price Band:</strong> {{ ipo.price_band }}<br><br>
+                    <strong>Open Date:</strong> {{ ipo.open_date }}<br><br>
+                    <strong>Close Date:</strong> {{ ipo.close_date }}<br><br>
+                    <strong>Issue Size:</strong> {{ ipo.issue_size }}<br><br>
+                    <strong>Issue Type:</strong> {{ ipo.issue_type }}<br><br>
+                    <strong>Listing Date:</strong> {{ ipo.listing_date }}
+                </div>
+                
+                <!-- IPO Buttons -->
+                <div class="ipo-buttons">
+                    <a href="{{ ipo.rhp_pdf.url }}" class="rhp-button" target="_blank">RHP</a>
+                    <a href="{{ ipo.drhp_pdf.url }}" class="drhp-button" target="_blank">DRHP</a>
+                </div>
+            </div>
+            {% empty %}
+                <p>No IPOs registered yet.</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- FAQ Section -->
+    <div class="faq-container">
+        <h2>Frequently Asked Questions?</h2>
+        <p class="faq-intro">Find answers to common questions that come in your mind related to IPO.</p>
+        
+        <!-- FAQ Items -->
+        {% for faq in faqs %}
+        <div class="faq">
+            <div class="faq-header">
+                <span>{{ faq.question }}</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-content">
+                <p>{{ faq.answer }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Resources Section -->
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#">Trading View</a>
+                <a href="#">NSE Holidays</a>
+                <a href="#">e-Voting CDSL</a>
+                <a href="#">e-Voting NSDL</a>
+                <a href="#">Market Timings</a>
+            </div>
+
+            <!-- Company Section -->
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#">Careers</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About Us</a>
+                <a href="#">Community</a>
+                <a href="#">Blogs</a>
+            </div>
+
+            <!-- Offerings Section -->
+            <div class="footer-section">
+                <h4>Offerings</h4>
+                <a href="#">Compare Broker</a>
+                <a href="#">Fin Calculators</a>
+                <a href="#">IPO</a>
+                <a href="#">All Brokers</a>
+                <a href="#">Products</a>
+            </div>
+
+            <!-- Links Section -->
+            <div class="footer-section">
+                <h4>Links</h4>
+                <a href="#">Shark Investor</a>
+                <a href="#">Mutual Funds</a>
+                <a href="#">Sitemap</a>
+                <a href="#">Indian Indices</a>
+                <a href="#">Bug Bounty Program</a>
+            </div>
+        </div>
+
+        <!-- Social Media Icons Section -->
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/company/bluestock-fintech?trk=blended-typeahead" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/bluestock.in/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://m.youtube.com/@bluestockfintech" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/BFintech3366" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+
+        <!-- Logo Section -->
+        <div class="footer-logo">
+            <img src="{% static 'images/desktopView.png' %}" alt="Bluestock Logo">
+        </div>
+
+        <!-- Footer Notes -->
+        <div class="footer-note">
+            <p>Investment in securities markets are subject to market risks; read all the related documents carefully before investing as prescribed by SEBI, issued in the interest of the investors.</p>
+            <p>The users can write to <a href="mailto:hello@bluestock.in">hello@bluestock.in</a> for any app, website-related queries. You can also send IT/Tech-related feedback to <a href="mailto:cto@bluestock.in">cto@bluestock.in</a></p>
+        </div>
+
+        <!-- Disclaimer Section -->
+        <div class="footer-disclaimer">
+            <p>Disclaimer: We are not a SEBI registered research analyst company. We do not provide any kind of stock recommendations, buy/sell stock tips, or investment/trading advice. All the stock scripts shown in the Bluestock app, website, and social media handles are for educational purposes only.</p>
+            <p>Before making any investment in the financial market, it is advisable to consult with your financial advisor. Remember that stock markets are subject to market risks.</p>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>Bluestock Fintech Pvt. Ltd. All Rights Reserved. MSME Registration No: UDYAM-MH-01-0138001</p>
+            <p>Made with <span>❤️</span> in Pune, Maharashtra</p>
+        </div>
+    </footer>
+
+    <!-- FAQ Toggle Script -->
+    <script>
+        // Script to handle FAQ toggle functionality
+        document.querySelectorAll('.faq-header').forEach(item => {
+            item.addEventListener('click', () => {
+                const faq = item.parentElement;
+                faq.classList.toggle('active');
+                const toggle = faq.querySelector('.faq-toggle');
+                toggle.textContent = faq.classList.contains('active') ? '-' : '+';
+            });
+        });
+    </script>
+</body>
+</html>
